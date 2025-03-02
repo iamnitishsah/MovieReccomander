@@ -5,15 +5,27 @@ from typing import Tuple, List
 from functools import lru_cache
 import time
 
-# Constants
 API_KEY = '0b27a94ce84af2198e74f61045430715'
 BASE_POSTER_URL = "https://image.tmdb.org/t/p/w500/"
 DEFAULT_POSTER = "https://via.placeholder.com/500x750.png?text=Poster+Not+Available"
 
 
+def configure_page():
+    st.set_page_config(
+        page_title="Movie Recommender System",
+        page_icon="🎬",
+        layout="wide",
+        initial_sidebar_state="collapsed",
+        menu_items={
+            'Get Help': 'https://www.themoviedb.org/',
+            'Report a bug': "https://github.com/yourusername/yourrepo/issues",
+            'About': "A movie recommendation system built with ❤️ by Nitish Sah"
+        }
+    )
+
+
 @st.cache_data
 def load_data():
-    """Load movie data and similarity matrix with caching"""
     try:
         movies = pickle.load(open('movies.pkl', 'rb'))
         similarity = pickle.load(open('similarity.pkl', 'rb'))
@@ -28,7 +40,6 @@ def load_data():
 
 @lru_cache(maxsize=100)
 def fetch_poster(movie_id: int) -> str:
-    """Fetch movie poster with caching and error handling"""
     try:
         url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US"
         response = requests.get(url, timeout=5)
@@ -41,7 +52,6 @@ def fetch_poster(movie_id: int) -> str:
 
 
 def recommend(movie: str, movies, similarity) -> Tuple[List[Tuple[int, str]], List[str]]:
-    """Generate movie recommendations"""
     try:
         movie_index = movies[movies['title'] == movie].index[0]
         distances = similarity[movie_index]
@@ -66,7 +76,8 @@ def recommend(movie: str, movies, similarity) -> Tuple[List[Tuple[int, str]], Li
 
 
 def main():
-    # Custom CSS for better styling
+    configure_page()
+
     st.markdown("""
         <style>
         .movie-title {
@@ -87,19 +98,16 @@ def main():
         </style>
     """, unsafe_allow_html=True)
 
-    # Load data
     movies, similarity = load_data()
     if movies is None or similarity is None:
         return
 
-    # Header
     st.title("🎬 Movie Recommender System")
     st.markdown("""
         Discover your next favorite movie! Select a film below and get personalized recommendations 
         based on content similarity. Powered by TMDB API. 🍿
     """)
 
-    # Movie selection
     movie_options = ['Select a movie... 🎥'] + list(movies['title'].values)
     selected_movie = st.selectbox(
         'Choose a movie:',
@@ -107,7 +115,6 @@ def main():
         help="Pick a movie to see similar recommendations"
     )
 
-    # Recommendation button and results
     if st.button('🎥 Get Recommendations'):
         if selected_movie == 'Select a movie... 🎥':
             st.warning("Please select a movie first!")
@@ -132,7 +139,6 @@ def main():
                 else:
                     st.error("No recommendations available at this time.")
 
-    # Footer
     st.markdown("""
         ---
         Made with ❤️ by [Nitish Sah](https://www.instagram.com/nitishades/) | 
