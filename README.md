@@ -1,6 +1,6 @@
-# Movie Recommendation App
+# MovieitNit
 
-Welcome to the **Movie Recommendation App**! This project is a Streamlit-based web application that provides personalized movie recommendations based on user input.
+Welcome to the **MovieitNit**! This project is a Streamlit-based web application that provides personalized movie recommendations based on user input.
 
 ## 🎬 Features
 - Simple and interactive UI powered by Streamlit
@@ -9,11 +9,11 @@ Welcome to the **Movie Recommendation App**! This project is a Streamlit-based w
 - Deployable on Streamlit Cloud
 
 ## 🚀 Live Demo
-Check out the live application here: [Movie Recommendation App](https://nitishmovieproject.streamlit.app/)
+Check out the live application here: [MovieitNit](https://nitishmovieproject.streamlit.app/)
 
 ## 📂 Project Structure
 ```
-📦 Movie-Recommendation-App
+📦 MovieitNit
 ├── 📜 app.py       # Main application file
 ├── 📜 requirements.txt  # Dependencies
 └── 📜 README.md   # Project documentation
@@ -24,8 +24,8 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/nitishadow/Movie-Recommendation-App.git
-   cd Movie-Recommendation-App
+   git clone https://github.com/nitishadow/MovieitNit.git
+   cd MovieitNit
    ```
 2. Install dependencies:
    ```sh
