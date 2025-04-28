@@ -16,11 +16,6 @@ def configure_page():
         page_icon="🎬",
         layout="wide",
         initial_sidebar_state="collapsed",
-        menu_items={
-            'Get Help': 'https://www.themoviedb.org/',
-            'Report a bug': "https://github.com/yourusername/yourrepo/issues",
-            'About': "A movie recommendation system built with ❤️ by Nitish Sah"
-        }
     )
 
 
@@ -141,7 +136,7 @@ def main():
 
     st.markdown("""
         ---
-        Made with ❤️ by [Nitish Sah](https://www.instagram.com/nitishades/) | 
+        Made with ❤️ by [Nitish Sah](https://www.linkedin.com/in/iamnitishsah/) | 
         Powered by [TMDB](https://www.themoviedb.org/)
     """)
 
